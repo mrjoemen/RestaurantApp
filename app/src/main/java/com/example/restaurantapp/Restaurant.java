@@ -1,41 +1,8 @@
 package com.example.restaurantapp;
 
 public class Restaurant {
-    private String name, address;
     private int restaurantID;
-    private float liquorRating, produceRating;
-
-    public Restaurant(){
-
-        restaurantID = -1;
-        liquorRating = 0;
-        produceRating = 0;
-    }
-
-    public float getLiquorRating() {
-        return liquorRating;
-    }
-
-    public void setLiquorRating(float liquorRating) {
-        this.liquorRating = liquorRating;
-    }
-
-    public float getProduceRating() {
-        return produceRating;
-    }
-
-    public void setProduceRating(float produceRating) {
-        this.produceRating = produceRating;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
+    private String name, address, city, state, zipcode, meal, type;
     private float rating;
 
     public int getRestaurantID() {
@@ -61,4 +28,59 @@ public class Restaurant {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getMeal() {
+        return meal;
+    }
+
+    public void setMeal(String meal) {
+        this.meal = meal;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public Restaurant(){
+        //"name text not null, address text, city text, state text, zipcode text," +
+        //                        "meal text, type text, rating real
+        restaurantID = -1;
+    }
+
 }

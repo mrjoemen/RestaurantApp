@@ -13,8 +13,8 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
     //Database creation sql statement
     private static final String CREATE_TABLE_RESTAURANT =
             "create table restaurants(_id integer primary key autoincrement, "
-                    + "name text not null, address text, "
-                    + "liquorRating real, produceRating real);";
+                    + "name text not null, address text, city text, state text, zipcode text," +
+                        "meal text, type text, rating real);";
     public RestaurantDBHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

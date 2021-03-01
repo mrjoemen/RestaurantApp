@@ -30,8 +30,12 @@ public class RestaurantDataSource {
 
             initialValues.put("name", r.getName());
             initialValues.put("address", r.getAddress());
-            initialValues.put("liquorRating", r.getLiquorRating());
-            initialValues.put("produceRating", r.getProduceRating());
+            initialValues.put("city", r.getCity());
+            initialValues.put("state", r.getState());
+            initialValues.put("zipcode", r.getZipcode());
+            initialValues.put("meal", r.getMeal());
+            initialValues.put("type", r.getType());
+            initialValues.put("rating", r.getRating());
 
             didSucceed = database.insert("restaurants", null, initialValues) > 0; // this will return the number of rows that were affected by the change, which is why we compare it 0
         }
@@ -49,8 +53,12 @@ public class RestaurantDataSource {
 
             updateValues.put("name", r.getName());
             updateValues.put("address", r.getAddress());
-            updateValues.put("liquorRating", r.getLiquorRating());
-            updateValues.put("produceRating", r.getProduceRating());
+            updateValues.put("city", r.getCity());
+            updateValues.put("state", r.getState());
+            updateValues.put("zipcode", r.getZipcode());
+            updateValues.put("meal", r.getMeal());
+            updateValues.put("type", r.getType());
+            updateValues.put("rating", r.getRating());
 
             didSucceed = database.update("restaurants", updateValues, "_id=" + rowId, null) > 0; // this will return the number of rows that were affected by the change, which is why we compare it 0
         }
