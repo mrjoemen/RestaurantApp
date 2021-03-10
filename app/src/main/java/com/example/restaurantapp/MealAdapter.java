@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MealAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Restaurant> mealData;
+    private View.OnClickListener onItemListener;
 
     public class MealViewHolder extends RecyclerView.ViewHolder{
 
@@ -30,6 +31,7 @@ public class MealAdapter extends RecyclerView.Adapter {
             textViewMeal = itemView.findViewById(R.id.mealName);
             textViewType = itemView.findViewById(R.id.mealType);
             ratingBar = itemView.findViewById(R.id.mealRating);
+            itemView.setOnClickListener(onItemListener);
         }
 
         public TextView getTextViewType() {

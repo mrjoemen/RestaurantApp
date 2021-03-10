@@ -153,4 +153,6 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
         currentRestaurant.setRating(myRating);
     }
 
+
+
 }
