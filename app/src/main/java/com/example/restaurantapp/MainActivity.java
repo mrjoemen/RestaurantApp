@@ -135,16 +135,7 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
             else {
                 Toast.makeText(this, "Unsuccessful, check log please.", Toast.LENGTH_LONG).show();
             }
-
-            if (wasSuccessful) {
-
-                int newId = ds.getLastRestaurantID();
-                currentRestaurant.setRestaurantID(newId);
-            }
         });
-
-
-
 
     }
 
@@ -152,7 +143,5 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
     public void didFinishRating(float myRating) { // this will grab the rating from the dialog box
         currentRestaurant.setRating(myRating);
     }
-
-
 
 }
