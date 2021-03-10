@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
 
         initRateButton();
         initSaveButton();
+        pullArray();
 
+    }
+
+    private void pullArray() {
         RestaurantDataSource ds = new RestaurantDataSource(this);
         ArrayList<Restaurant> meals;
 
@@ -136,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
                 Toast.makeText(this, "Unsuccessful, check log please.", Toast.LENGTH_LONG).show();
             }
         });
+
+            pullArray();
 
     }
 
