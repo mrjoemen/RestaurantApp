@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class RestaurantDataSource {
 
     private SQLiteDatabase database;
@@ -83,4 +86,36 @@ public class RestaurantDataSource {
         }
         return lastId;
     }
+
+
+    //creating an Array of Restaurant type where we store name, meal and rating data,
+    // pulled from the DB
+    public ArrayList<Restaurant> getMeals(){
+        ArrayList<Restaurant> meals = new ArrayList<>();
+        try{
+            //we just need these 3 values
+            String query = "Select meal, type, rating from restaurants";
+            Cursor cursor = database.rawQuery(query, null);
+            cursor.moveToFirst();
+
+            while(!cursor.isAfterLast()){
+                //while queried list lasts, we create a new object
+                Restaurant restaurant = new Restaurant();
+
+                //store these 3 values
+                restaurant.setMeal(cursor.getString(0));
+                restaurant.setType(cursor.getString(1));
+                restaurant.setRating(cursor.getFloat(2));
+
+                //adding objects to the array
+                meals.add(restaurant);
+                cursor.moveToNext();
+            }
+        }
+        catch (Exception e){
+            meals = new ArrayList<>();
+        }
+        return meals;
+    }
+
 }

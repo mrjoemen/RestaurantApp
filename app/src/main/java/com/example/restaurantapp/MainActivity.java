@@ -2,14 +2,19 @@ package com.example.restaurantapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RatingDialog.SaveRatingListener {
 
@@ -39,6 +44,43 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
 
         initRateButton();
         initSaveButton();
+
+        RestaurantDataSource ds = new RestaurantDataSource(this);
+        ArrayList<Restaurant> meals;
+
+        try{
+            ds.open();
+            meals = ds.getMeals();
+            ds.close();
+            RecyclerView mealList = findViewById(R.id.rvMeals);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            mealList.setLayoutManager(layoutManager);
+            MealAdapter mealAdapter = new MealAdapter(meals);
+            mealList.setAdapter(mealAdapter);
+        }
+        catch(Exception e){
+            Toast.makeText(this, "Error Retrieving meals", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        EditText editMeal = findViewById(R.id.editMealName);
+        imm.hideSoftInputFromWindow(editMeal.getWindowToken(),0);
+        EditText editRestName = findViewById(R.id.editName);
+        imm.hideSoftInputFromWindow(editRestName.getWindowToken(),0);
+        EditText editAddress= findViewById(R.id.editAddress);
+        imm.hideSoftInputFromWindow(editAddress.getWindowToken(),0);
+        EditText editCity = findViewById(R.id.editCity);
+        imm.hideSoftInputFromWindow(editCity.getWindowToken(),0);
+       EditText editState = findViewById(R.id.editState);
+        imm.hideSoftInputFromWindow(editState.getWindowToken(),0);
+        EditText editZip = findViewById(R.id.editZipCode);
+        imm.hideSoftInputFromWindow(editZip.getWindowToken(),0);
+        EditText editType = findViewById(R.id.editMealType);
+        imm.hideSoftInputFromWindow(editType.getWindowToken(),0);
+
+
     }
 
     private void initRateButton() {
@@ -74,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
             currentRestaurant.setType(mealType.getText().toString());
 
             boolean wasSuccessful;
+            hideKeyboard();
             RestaurantDataSource ds = new RestaurantDataSource(this);
             try {
                 ds.open();
@@ -92,7 +135,17 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
             else {
                 Toast.makeText(this, "Unsuccessful, check log please.", Toast.LENGTH_LONG).show();
             }
+
+            if (wasSuccessful) {
+
+                int newId = ds.getLastRestaurantID();
+                currentRestaurant.setRestaurantID(newId);
+            }
         });
+
+
+
+
     }
 
     @Override
