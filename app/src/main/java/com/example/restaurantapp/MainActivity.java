@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Save
             *  DONE - main activity page
             *  DONE - rate dialog
             *  DONE - connect to db and have it functioning
-            *  IN PROGRESS - create list item
-            *  get data from database to place into the adapter
+            *  DONE- create list item
+            *  DONE - get data from database to place into the adapter
             *  create delete button and have that hooked up to delete list items
             *  when selecting the item, we need to have a way to edit the meal like we did on the contact app when you click on a contact
     * */
